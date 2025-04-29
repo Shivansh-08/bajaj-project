@@ -15,6 +15,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def redirect_to_docs():
+    return RedirectResponse(url="/docs")
+    
 @app.post("/get-lab-tests")
 async def get_lab_tests(file: UploadFile = File(...)):
     if not file:
